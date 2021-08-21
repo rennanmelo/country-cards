@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Countries from "../components/Countries";
+import Country from "../components/Country";
 import Header from "../components/Header";
 import Main from "../components/Main";
 import TextInput from "../components/TextInput";
@@ -32,6 +34,18 @@ const ReactCountriesPage = () => {
           autoFocus
           onInputChange={handleCountryFilterChange}
         />
+
+        <Countries>
+          <h2 className="text-center font-semibold">
+            {filteredCountries.length === 1
+              ? "1 country found"
+              : `${filteredCountries.length} countries found`}
+          </h2>
+
+          {filteredCountries.map((country) => {
+            return <Country key={country.id}>{country}</Country>;
+          })}
+        </Countries>
       </Main>
     </>
   );
