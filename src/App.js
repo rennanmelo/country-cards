@@ -1,8 +1,8 @@
+import ReactCountriesPage from "./pages/ReactCountriesPage";
+
 function App() {
   return (
-    <div className="App">
-      <h1>My app</h1>
-    </div>
+    <ReactCountriesPage />
   );
 }
 
