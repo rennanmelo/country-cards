@@ -8,6 +8,7 @@ import { allCountries } from "../data/countries";
 
 const ReactCountriesPage = () => {
   const [countryFilter, setCountryFilter] = useState("");
+  const [visitedCountries, setVisitedCountries] = useState([]);
 
   const countryFilterTreated = countryFilter.trim().toLocaleLowerCase();
 
@@ -21,6 +22,22 @@ const ReactCountriesPage = () => {
 
   const handleCountryFilterChange = (newCountryFilter) => {
     setCountryFilter(newCountryFilter);
+  };
+
+  const toggleVisitedCountry = (countryId) => {
+    let newVisitedCountries = [...visitedCountries];
+
+    const isCountryVisited = newVisitedCountries.indexOf(countryId) !== -1;
+
+    if (isCountryVisited) {
+      newVisitedCountries = newVisitedCountries.filter((visitedCountryId) => {
+        return visitedCountryId !== countryId;
+      });
+    } else {
+      newVisitedCountries.push(countryId);
+    }
+
+    setVisitedCountries(newVisitedCountries);
   };
 
   return (
@@ -42,8 +59,24 @@ const ReactCountriesPage = () => {
               : `${filteredCountries.length} countries found`}
           </h2>
 
+          <h3 className="text-center font-semibold text-sm">
+            {visitedCountries.length === 1
+              ? "1 country visited"
+              : `${visitedCountries.length} countries visited`}
+          </h3>
+
           {filteredCountries.map((country) => {
-            return <Country key={country.id}>{country}</Country>;
+            const isVisited = visitedCountries.indexOf(country.id) !== -1;
+
+            return (
+              <Country
+                key={country.id}
+                isVisited={isVisited}
+                onCountryClick={toggleVisitedCountry}
+              >
+                {country}
+              </Country>
+            );
           })}
         </Countries>
       </Main>
