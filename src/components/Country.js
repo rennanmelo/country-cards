@@ -1,3 +1,5 @@
+import ItemList from "./ItemList";
+
 const Country = ({ children: country }) => {
   const { flag, name, capital, region, population, area } = country;
 
@@ -7,29 +9,19 @@ const Country = ({ children: country }) => {
 
       <ul>
         <li>
-          <span className="text-sm">
-            <strong>Name:</strong> {name}
-          </span>
+          <ItemList label="Name">{name}</ItemList>
         </li>
         <li>
-          <span className="text-sm">
-            <strong>Capital:</strong> {capital}
-          </span>
+          <ItemList label="Capital">{capital}</ItemList>
         </li>
         <li>
-          <span className="text-sm">
-            <strong>Region:</strong> {region}
-          </span>
+          <ItemList label="Region">{region}</ItemList>
         </li>
         <li>
-          <span className="text-sm">
-            <strong>Population:</strong> {population}
-          </span>
+          <ItemList label="Population">{population}</ItemList>
         </li>
         <li>
-          <span className="text-sm">
-            <strong>Area:</strong> {area}
-          </span>
+          <ItemList label="Area">{area}</ItemList>
         </li>
       </ul>
     </div>
