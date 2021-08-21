@@ -7,6 +7,16 @@ import { allCountries } from "../data/countries";
 const ReactCountriesPage = () => {
   const [countryFilter, setCountryFilter] = useState("");
 
+  const countryFilterTreated = countryFilter.trim().toLocaleLowerCase();
+
+  const filteredCountries =
+    countryFilterTreated.length >= 3
+      ? allCountries.filter(({ name }) => {
+          const countryNameTreated = name.trim().toLocaleLowerCase();
+          return countryNameTreated.includes(countryFilterTreated);
+        })
+      : allCountries;
+
   const handleCountryFilterChange = (newCountryFilter) => {
     setCountryFilter(newCountryFilter);
   };
